@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #content {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    #content p:not(:first-child) {
+      display: none;
+      margin-top: 10px;
+    }
+
+    #showMoreBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #showMoreBtn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="content">
+    <h1>Hidden Content Example</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p class="hidden-paragraph">Phasellus euismod, mauris quis tristique tempor, lorem nibh dictum nibh, quis volutpat arcu diam sed tellus.</p>
+    <p class="hidden-paragraph">Nullam auctor suscipit tincidunt.</p>
+    <button id="showMoreBtn">Show More</button>
+  </div>
+  <script>
+    var hidden = true;
+    var paragraphs = document.querySelectorAll(".hidden-paragraph");
+
+    document.getElementById("showMoreBtn").addEventListener("click", function() {
+      if (hidden) {
+        paragraphs.forEach(function(paragraph) {
+          paragraph.style.display = "block";
+        });
+        hidden = false;
+        document.getElementById("showMoreBtn").textContent = "Hide";
+      } else {
+        paragraphs.forEach(function(paragraph) {
+          paragraph.style.display = "none";
+        });
+        hidden = true;
+        document.getElementById("showMoreBtn").textContent = "Show More";
+      }
+    });
+  </script>
+</body>
+
+</html>

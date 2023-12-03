@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown Timer</title>
+  <script>
+    function countdown() {
+      const startTime = localStorage.getItem('countdownStart');
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      if (!startTime) {
+        // Set the starting timestamp if it doesn't exist in localStorage
+        localStorage.setItem('countdownStart', currentTime);
+      } else {
+        const elapsedSeconds = currentTime - startTime;
+        const remainingSeconds = 3600 - elapsedSeconds;
+
+        if (remainingSeconds <= 0) {
+          // Countdown has ended
+          document.getElementById('countdown').innerHTML = 'Countdown has ended';
+          localStorage.removeItem('countdownStart');
+        } else {
+          const hours = Math.floor(remainingSeconds / 3600);
+          const minutes = Math.floor((remainingSeconds % 3600) / 60);
+          const seconds = remainingSeconds % 60;
+
+          document.getElementById('countdown').innerHTML = hours + ' hours, ' + minutes + ' minutes, ' + seconds + ' seconds';
+        }
+      }
+    }
+
+    window.onload = function() {
+      countdown(); // Call the countdown function when the page loads
+      setInterval(countdown, 1000);
+    };
+  </script>
+</head>
+<body>
+  <h1>Countdown Timer</h1>
+
+  <div id="countdown"></div>
+</body>
+</html>

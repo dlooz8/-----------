@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .slideshow-container {
+      position: relative;
+      max-width: 1440px;
+      height: 400px; /* Set a fixed height for the container */
+      margin: auto;
+      overflow: hidden; /* Ensure images don't overflow */
+    }
+
+    .slideshow-container img {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Fill the container while maintaining aspect ratio */
+    }
+
+    .slideshow-container img.active {
+      display: block;
+    }
+
+    .dot-container {
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.3);
+      margin: 0 4px;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow-container">
+    <img src="image1.jpg" alt="Image 1" class="active">
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+  </div>
+
+  <div class="dot-container">
+    <span class="dot active" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+
+  <script>
+    var slideIndex = 0;
+    showSlides(slideIndex);
+
+    function showSlides() {
+      var slides = document.getElementsByClassName("slideshow-container")[0].getElementsByTagName("img");
+      var dots = document.getElementsByClassName("dot");
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].style.opacity = 0;
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+      slides[slideIndex - 1].style.opacity = 1;
+      dots[slideIndex - 1].className += " active";
+      setTimeout(showSlides, 3000); // Change slide every 3 seconds
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+  </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .slideshow-container {
+      position: relative;
+      max-width: 1440px;
+      height: 400px; /* Set a fixed height for the container */
+      margin: auto;
+      overflow: hidden; /* Ensure images don't overflow */
+    }
+
+    .slideshow-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out; /* Add fade animation */
+      object-fit: cover; /* Fill the container while maintaining aspect ratio */
+    }
+
+    .slideshow-container img.active {
+      opacity: 1;
+    }
+
+    .dot-container {
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.3);
+      margin: 0 4px;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow-container">
+    <img src="image1.jpg" alt="Image 1" class="active">
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+    Add more images here
+  </div>
+
+  <div class="dot-container">
+    <span class="dot active" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+
+  <script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      var slides = document.getElementsByClassName("slideshow-container")[0].getElementsByTagName("img");
+      var dots = document.getElementsByClassName("dot");
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].style.opacity = 0;
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+      slides[slideIndex - 1].style.opacity = 1;
+      dots[slideIndex - 1].className += " active";
+      setTimeout(showSlides, 3000); // Change slide every 3 seconds
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+  </script>
+</body>
+</html> -->

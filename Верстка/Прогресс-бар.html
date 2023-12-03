@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #progress-bar-container {
+      width: 200px;
+      height: 20px;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #progress-bar {
+      width: 0;
+      height: 100%;
+      background-color: #3498db;
+      transition: width 0.5s linear;
+    }
+  </style>
+</head>
+<body>
+  <div id="progress-bar-container">
+    <div id="progress-bar"></div>
+  </div>
+
+  <script>
+    let summ = 0
+    function updateProgressBar(progress) {
+      const progressBar = document.getElementById("progress-bar");
+      progressBar.style.width = summ + progress + "%";
+      summ += progress;
+    }
+  </script>
+  <button onclick="updateProgressBar(10)">Up progress</button>
+</body>
+</html>

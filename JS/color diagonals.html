@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Diagonals of a Table</title>
+  <style>
+    td {
+      width: 50px;
+      height: 50px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <table id="myTable">
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <button onclick="colorDiagonals()">Color Diagonals</button>
+
+  <script>
+    function colorDiagonals() {
+      const table = document.getElementById('myTable');
+      const rows = table.getElementsByTagName('tr');
+
+      // Color the first diagonal cells with red
+      for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        cells[i].style.backgroundColor = 'red';
+      }
+
+      // Color the second diagonal cells with green
+      for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        cells[cells.length - 1 - i].style.backgroundColor = 'green';
+      }
+    }
+  </script>
+</body>
+</html>

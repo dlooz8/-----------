@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Cells</title>
+  <style>
+    .red {
+      background-color: red;
+    }
+  </style>
+  <script>
+    let currentIndex = 0;
+
+    function colorNextCell() {
+      const cells = document.querySelectorAll('td');
+      if (currentIndex >= cells.length) {
+        alert('All cells have been colored!');
+        return;
+      }
+
+      cells[currentIndex].classList.add('red');
+      currentIndex++;
+    }
+  </script>
+</head>
+<body>
+  <h1>Color Cells</h1>
+
+  <table>
+    <tr>
+      <td>Cell 1</td>
+      <td>Cell 2</td>
+      <td>Cell 3</td>
+      <td>Cell 4</td>
+      <td>Cell 5</td>
+    </tr>
+  </table>
+
+  <button onclick="colorNextCell()">Color Next Cell</button>
+</body>
+</html>

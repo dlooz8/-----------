@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      // Clear any previous error messages
+      var errorMessages = document.getElementsByClassName('error');
+      for (var i = 0; i < errorMessages.length; i++) {
+        errorMessages[i].style.display = 'none';
+      }
+
+      var firstName = document.getElementById('firstName').value;
+      var lastName = document.getElementById('lastName').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+
+      var isValid = true;
+
+      // Validation rules
+      if (firstName === '') {
+        document.getElementById('firstNameError').style.display = 'block';
+        isValid = false;
+      }
+
+      if (lastName === '') {
+        document.getElementById('lastNameError').style.display = 'block';
+        isValid = false;
+      }
+
+      if (email === '') {
+        document.getElementById('emailError').style.display = 'block';
+        isValid = false;
+      } else if (!isValidEmail(email)) {
+        document.getElementById('emailFormatError').style.display = 'block';
+        isValid = false;
+      }
+
+      if (password === '') {
+        document.getElementById('passwordError').style.display = 'block';
+        isValid = false;
+      }
+
+      if (isValid) {
+        // Registration successful
+        document.getElementById('registrationSuccess').style.display = 'block';
+      }
+    }
+
+    // Email format validation regular expression
+    function isValidEmail(email) {
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+  </script>
+</head>
+<body>
+  <h1>Registration Form</h1>
+
+  <form onsubmit="event.preventDefault(); validateForm();">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" required>
+      <span id="firstNameError" class="error" style="display: none;">Please enter your first name.</span>
+    </div>
+
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" required>
+      <span id="lastNameError" class="error" style="display: none;">Please enter your last name.</span>
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+      <span id="emailError" class="error" style="display: none;">Please enter your email.</span>
+      <span id="emailFormatError" class="error" style="display: none;">Please enter a valid email address.</span>
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+      <span id="passwordError" class="error" style="display: none;">Please enter your password.</span>
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div id="registrationSuccess" style="display: none;">Registration successful!</div>
+</body>
+</html>

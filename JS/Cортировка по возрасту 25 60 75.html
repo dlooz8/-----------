@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>People Info</title>
+  <script>
+    var people = [
+      { name: 'John', age: 30 },
+      { name: 'Jane', age: 40 },
+      { name: 'Mike', age: 20 },
+      { name: 'Emily', age: 50 },
+      { name: 'David', age: 70 },
+      { name: 'Sarah', age: 80 }
+    ];
+
+    function displayPeople(minAge) {
+      var filteredPeople = people.filter(function(person) {
+        return person.age > minAge;
+      });
+
+      var peopleList = document.getElementById('peopleList');
+      peopleList.innerHTML = '';
+
+      if (filteredPeople.length > 0) {
+        for (var i = 0; i < filteredPeople.length; i++) {
+          var personElement = document.createElement('li');
+          personElement.textContent = filteredPeople[i].name + ' (' + filteredPeople[i].age + ' years old)';
+          peopleList.appendChild(personElement);
+        }
+      } else {
+        var noPeopleMessage = document.createElement('li');
+        noPeopleMessage.textContent = 'No people found.';
+        peopleList.appendChild(noPeopleMessage);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>People Info</h1>
+
+  <button onclick="displayPeople(25)">Show People > 25</button>
+  <button onclick="displayPeople(60)">Show People > 60</button>
+  <button onclick="displayPeople(75)">Show People > 75</button>
+
+  <ul id="peopleList"></ul>
+</body>
+</html>

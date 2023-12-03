@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Кнопочный калькулятор</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .calculator {
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .calculator input[type="text"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .calculator button {
+      display: inline-block;
+      width: 23%;
+      margin: 5px;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .calculator button:hover {
+      background-color: #555;
+    }
+  </style>
+  <script>
+    function appendToInput(value) {
+      document.getElementById('input').value += value;
+    }
+
+    function clearInput() {
+      document.getElementById('input').value = '';
+    }
+
+    function calculate() {
+      const input = document.getElementById('input').value;
+      try {
+        const result = Function(`'use strict'; return (${input});`)();
+        document.getElementById('input').value = result;
+      } catch (error) {
+        document.getElementById('input').value = 'Error';
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="calculator">
+    <h1>Кнопочный калькулятор</h1>
+    <input type="text" id="input" readonly>
+    <br>
+    <button onclick="appendToInput('7')">7</button>
+    <button onclick="appendToInput('8')">8</button>
+    <button onclick="appendToInput('9')">9</button>
+    <br>
+    <button onclick="appendToInput('4')">4</button>
+    <button onclick="appendToInput('5')">5</button>
+    <button onclick="appendToInput('6')">6</button>
+    <br>
+    <button onclick="appendToInput('1')">1</button>
+    <button onclick="appendToInput('2')">2</button>
+    <button onclick="appendToInput('3')">3</button>
+    <br>
+    <button onclick="appendToInput('0')">0</button>
+    <button onclick="appendToInput('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <br>
+    <button onclick="appendToInput('+')">+</button>
+    <button onclick="appendToInput('-')">-</button>
+    <button onclick="appendToInput('/')">/</button>
+    <button onclick="appendToInput('*')">*</button>
+    <button onclick="clearInput()">Clear</button>
+  </div>
+</body>
+</html>

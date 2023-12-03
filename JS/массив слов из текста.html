@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Массив слов из текста</title>
+  <script>
+    function getWordsFromText() {
+      const text = document.getElementById('inputText').value;
+      const words = text.split(/[^\p{L}]+/u).filter(word => word !== '');
+
+      document.getElementById('output').textContent = JSON.stringify(words);
+    }
+  </script>
+</head>
+<body>
+  <label for="inputText">Введите текст:</label>
+  <input type="text" id="inputText">
+  <button onclick="getWordsFromText()">Получить массив слов</button>
+  <div id="output"></div>
+</body>
+</html>
